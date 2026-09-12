@@ -22,14 +22,15 @@ const SelectedStack = ({ setSelectedStack, selectedStack }: SelectedProps) => {
   return (
     <div className="px-5">
       {selectedStack.length === 0 ? (
-        <h1>No technologies selected yet.</h1>
+        <h1 className="py-4">No technologies selected yet.</h1>
       ) : (
-        <h1>({selectedStack.length}) Stack selected.</h1>
+        <h1 className="py-4">({selectedStack.length}) Stack selected.</h1>
       )}
       {selectedStack.map((selectedStackCard) => (
         <SelectedStackCard
           selectedStackCard={selectedStackCard}
           handelRemove={handelRemove}
+          key={selectedStackCard.id}
         />
       ))}
 
@@ -38,7 +39,10 @@ const SelectedStack = ({ setSelectedStack, selectedStack }: SelectedProps) => {
           <h1 className="text-sm text-gray-400">Your stack is empty.</h1>
         </div>
       ) : (
-        <button onClick={() => handelRemoveAll()} className="w-full rounded-full border-2 border-red-300 bg-white py-3 text-sm font-bold text-red-600 hover:bg-red-50 transition-colors">
+        <button
+          onClick={() => handelRemoveAll()}
+          className="w-full rounded-full border-2 border-red-300 bg-white py-3 text-sm font-bold text-red-600 hover:bg-red-50 transition-colors"
+        >
           Remove All
         </button>
       )}

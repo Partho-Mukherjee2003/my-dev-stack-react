@@ -25,13 +25,12 @@ const StackCard = ({
   // ***Active Handeler***
   const handelStackBtn = () => {
     toast.success("Your Stack is Added");
-
     setSelectedStack([...selectedStack,stackCard]);
   };
 
 
   return (
-    <div className="rounded-2xl border border-gray-200 bg-white p-6 flex flex-col gap-4 hover:shadow-lg transition-shadow">
+    <div className={`rounded-2xl  bg-white p-6 flex flex-col gap-4 hover:shadow-lg transition-shadow ${isActive ? "border border-red-600" :  "border border-gray-200"  }`}>
       <div className="flex items-start justify-between">
         <img src={stackCard.icon} alt={stackCard.name} className="h-10 w-10" />
         <span className="rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-medium text-blue-600">
@@ -60,7 +59,7 @@ const StackCard = ({
         onClick={() => handelStackBtn()}
         className={`w-full rounded-full py-3 text-sm font-semibold transition-colors ${
           isActive
-            ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+            ? "bg-gray-300 text-red-500 cursor-not-allowed "
             : "bg-gray-900 text-white hover:bg-gray-800"
         }`}
       >

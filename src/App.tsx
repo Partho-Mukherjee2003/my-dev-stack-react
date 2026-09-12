@@ -20,8 +20,6 @@ const dataFetch = async (): Promise<StackCardsType[]> => {
 function App() {
 // ** data call **
 const [dataPromise] = useState(()=> dataFetch())
-console.log(dataFetch)
-
   return (
     <>
       <Nav />
