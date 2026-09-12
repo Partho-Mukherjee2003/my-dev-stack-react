@@ -40,14 +40,6 @@ React uses the key to identify which items have changed, been added, or been rem
 
 Conditional rendering means showing different UI depending on some condition — usually done with a ternary (? :) or && operator. I used it in the SelectedStack component to show either an empty-state message or the actual list of selected items:
 
-tsx
-{selectedStack.length === 0 ? (
-  <div className="flex items-center justify-center rounded-xl border-2 border-dashed border-gray-200 py-10 px-6">
-    <h1 className="text-sm text-gray-400">Your stack is empty.</h1>
-  </div>
-) : (
-  <h1>({selectedStack.length}) Stack selected.</h1>
-)}
 7. How do you pass data from a parent component to a child component, and how does a child send something back to the parent?
 
 A parent passes data to a child using props — for example, <StackCard stackCard={stackCard} /> sends the stackCard object down. To send something back up to the parent, the parent passes a function as a prop (since children can't directly modify the parent's state), and the child calls that function — usually with some data like an id. For example, I passed a handleRemove function down from StackCards/SelectedStack to SelectedStackCard, and when the user clicks the "X" button, the child calls that function with the item's id, which updates the parent's selectedStack state and causes everything to re-render correctly.
