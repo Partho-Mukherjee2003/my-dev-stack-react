@@ -3,11 +3,12 @@ import { X } from "lucide-react";
 
 interface SelectedStackCardProps {
   selectedStackCard: StackCardsType;
-
+  handelRemove:(value:string)=> void;
 }
 
 const SelectedStackCard = ({
-  selectedStackCard
+  selectedStackCard,
+  handelRemove,
 }: SelectedStackCardProps) => {
   return (
     <div className="flex items-center justify-between rounded-xl border border-gray-200 bg-white px-5 py-4 hover:shadow-sm transition-shadow">
@@ -21,7 +22,10 @@ const SelectedStackCard = ({
         </div>
       </div>
 
-      <button className="text-gray-400 hover:text-gray-600 transition-colors">
+      <button
+        onClick={() => handelRemove(selectedStackCard.id)}
+        className="text-gray-400 hover:text-gray-600 transition-colors"
+      >
         <X className="h-5 w-5" />
       </button>
     </div>
