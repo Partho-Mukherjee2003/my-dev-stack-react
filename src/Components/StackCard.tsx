@@ -1,4 +1,4 @@
-import { useState } from "react";
+
 import type StackCardType from "../Types/StackCards";
 import { toast } from "react-toastify";
 
@@ -13,12 +13,19 @@ const StackCard = ({
   selectedStack,
   setSelectedStack,
 }: stackcard) => {
-  const [active, setActive] = useState(false);
+  // const [active, setActive] = useState(false);
+  let isActive = false;
 
+  for (let i = 0; i < selectedStack.length; i++) {
+    if (selectedStack[i].id === stackCard.id) {
+      isActive = true;
+      break;
+    }
+  }
   // ***Active Handeler***
   const handelStackBtn = () => {
     toast.success("Your Stack is Added");
-    setActive(true);
+
     setSelectedStack([...selectedStack,stackCard]);
   };
 
@@ -49,15 +56,15 @@ const StackCard = ({
       </div>
 
       <button
-        disabled={active}
+        disabled={isActive}
         onClick={() => handelStackBtn()}
         className={`w-full rounded-full py-3 text-sm font-semibold transition-colors ${
-          active
+          isActive
             ? "bg-gray-300 text-gray-500 cursor-not-allowed"
             : "bg-gray-900 text-white hover:bg-gray-800"
         }`}
       >
-        {active ? "Added ✓" : "Add to Stack"}
+        {isActive ? "Added ✓" : "Add to Stack"}
       </button>
     </div>
   );
