@@ -1,3 +1,4 @@
+import { useState } from "react";
 import type StackCardType from "../Types/StackCards";
 
 interface stackcard {
@@ -5,6 +6,13 @@ interface stackcard {
 }
 
 const StackCard = ({ stackCard }: stackcard) => {
+  const [active,setActive] = useState(false)
+
+  // ***Active Handeler***
+  const handelStackBtn = () =>{
+    setActive(true)
+  }
+
   return (
     <div className="rounded-2xl border border-gray-200 bg-white p-6 flex flex-col gap-4 hover:shadow-lg transition-shadow">
       <div className="flex items-start justify-between">
@@ -30,8 +38,9 @@ const StackCard = ({ stackCard }: stackcard) => {
         </span>
       </div>
 
-      <button className="w-full rounded-full bg-gray-900 py-3 text-sm font-semibold text-white hover:bg-gray-800 transition-colors">
-        Add to Stack
+      <button disabled={active} onClick={() => handelStackBtn()}  className={`w-full rounded-full py-3 text-sm font-semibold transition-colors ${
+    active ? "bg-gray-300 text-gray-500 cursor-not-allowed": "bg-gray-900 text-white hover:bg-gray-800"}`}>
+      {active ? "Added ✓" : "Add to Stack"}
       </button>
     </div>
   );
