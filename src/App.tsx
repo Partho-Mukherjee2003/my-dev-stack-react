@@ -5,6 +5,8 @@ import type StackCardsType from "./Types/StackCards"
 import Footer from './Components/Footer';
 import { Suspense, useState } from 'react';
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 // *********  Data Fetching  **********
@@ -30,6 +32,7 @@ console.log(dataFetch)
         <StackCards dataPromise={dataPromise} />
       </Suspense>
       <Footer />
+      <ToastContainer/>
     </>
   );
 }

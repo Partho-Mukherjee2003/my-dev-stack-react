@@ -1,17 +1,27 @@
 import { useState } from "react";
 import type StackCardType from "../Types/StackCards";
+import { toast } from "react-toastify";
 
 interface stackcard {
   stackCard: StackCardType;
+  selectedStack: StackCardType[];
+  setSelectedStack: React.Dispatch<React.SetStateAction<StackCardType[]>>;
 }
 
-const StackCard = ({ stackCard }: stackcard) => {
-  const [active,setActive] = useState(false)
+const StackCard = ({
+  stackCard,
+  selectedStack,
+  setSelectedStack,
+}: stackcard) => {
+  const [active, setActive] = useState(false);
 
   // ***Active Handeler***
-  const handelStackBtn = () =>{
-    setActive(true)
-  }
+  const handelStackBtn = () => {
+    toast.success("Your Stack is Added");
+    setActive(true);
+    setSelectedStack([...selectedStack,stackCard]);
+  };
+
 
   return (
     <div className="rounded-2xl border border-gray-200 bg-white p-6 flex flex-col gap-4 hover:shadow-lg transition-shadow">
@@ -38,9 +48,16 @@ const StackCard = ({ stackCard }: stackcard) => {
         </span>
       </div>
 
-      <button disabled={active} onClick={() => handelStackBtn()}  className={`w-full rounded-full py-3 text-sm font-semibold transition-colors ${
-    active ? "bg-gray-300 text-gray-500 cursor-not-allowed": "bg-gray-900 text-white hover:bg-gray-800"}`}>
-      {active ? "Added ✓" : "Add to Stack"}
+      <button
+        disabled={active}
+        onClick={() => handelStackBtn()}
+        className={`w-full rounded-full py-3 text-sm font-semibold transition-colors ${
+          active
+            ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+            : "bg-gray-900 text-white hover:bg-gray-800"
+        }`}
+      >
+        {active ? "Added ✓" : "Add to Stack"}
       </button>
     </div>
   );
